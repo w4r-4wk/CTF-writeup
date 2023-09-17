@@ -1,0 +1,37 @@
+import os
+import sys
+import time
+
+def delete_old_files(root_folder, max_depth, max_age_days):
+    try:
+        current_time = time.time()
+        
+        for root, dirs, files in os.walk(root_folder):
+            depth = root.count(os.sep)
+            
+            if depth > max_depth:
+                continue  # Skip folders beyond the maximum depth
+            
+            for file in files:
+                file_path = os.path.join(root, file)
+                file_age = (current_time - os.path.getmtime(file_path)) / (60 * 60 * 24)
+                
+                if file_age > max_age_days:
+                    print(f"Deleting file: {file_path} (age: {file_age:.2f} days)")
+                    os.remove(file_path)
+    
+    except PermissionError as e:
+        print(f"Permission denied: {e}")
+    except Exception as e:
+        print(f"Error: {e}")
+
+if __name__ == "__main__":
+    if len(sys.argv) != 4:
+        print("Usage: python script.py root_folder max_depth max_age_days")
+        sys.exit(1)
+
+    root_folder = sys.argv[1]
+    max_depth = int(sys.argv[2])
+    max_age_days = int(sys.argv[3])
+    
+    delete_old_files(root_folder, max_depth, max_age_days)

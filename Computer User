@@ -1,0 +1,23 @@
+1. Who uses the computer:
+    I did this in windows by extracting the files from zip folder using 7zip. and then i googled where is
+    the user info stored in linux and got to know it is found in list home/ , so i checked the home folder in 
+    in file explorer, and found a folder named "emmetbrown".
+
+2.  Password-check:
+    For this i searched how to check password changed in linux and where is it stored, and got a stackoverflow 
+    article and then i check in folder var/log/messages and searched "passwd" in messages file and converted the
+    time accoring to epoch system.
+
+3. Browsing the interwebs:
+    Again found a stackoverflow article and check inside var/log/messages and searched for firefox and converted 
+    time to epoch system.
+
+4. delete my browsing history:
+    For this question I checked where is firefox history stores history, and in what format is it stored. But
+    I was not able to get to the final answer becuase i was not able to operate on the sqlite file.
+
+5. Say my name:
+    I checked the etc/fstab file after following a stackoverflow article, and found that root partition is mounted 
+    at `/` in fstab and i copied the uuid present there.
+
+
